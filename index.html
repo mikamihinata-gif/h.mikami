@@ -125,7 +125,8 @@
   .pubs .title { font-weight: 600; }
   .pubs .venue { font-style: italic; }
   .pubs .plinks { font-size: .9rem; margin-left: .3rem; white-space: nowrap; }
-  .pubs .me { text-decoration: underline; text-decoration-color: var(--dot); text-underline-offset: 3px; }
+  .me { text-decoration: underline; text-decoration-color: var(--dot); text-underline-offset: 3px; }
+  .pub-title { font-weight: 600; }
   h3.pub-group { font-size: 1rem; color: var(--muted); font-weight: 600; margin: 2rem 0 .8rem; }
   h3.pub-group:first-of-type { margin-top: 0; }
 
@@ -144,12 +145,11 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="site-name" href="#">Taro Yamada</a>
+    <a class="site-name" href="#">Hinata Mikami</a>
     <nav aria-label="ページ内リンク">
-      <a href="#news">News</a>
       <a href="#works">Works</a>
-      <a href="#publications">Publications</a>
       <a href="#cv">CV</a>
+      <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -175,7 +175,7 @@
         </ul>
       </div>
       <!-- ★ 顔写真：images フォルダに photo.jpg を入れたら、下の div を
-           <img class="photo" src="images/photo.jpg" alt="山田太郎の写真"> に置き換え -->
+           <img class="photo" src="images/photo.jpg" alt="Hinata Mikamiの写真"> に置き換え -->
       <div class="photo" role="img" aria-label="写真の場所">photo</div>
     </div>
   </div>
@@ -195,7 +195,7 @@
           <p class="meta"><span class="kind">研究/作品</span>2026–</p>
           <h3>vi-Vinci</h3>
           <p>絵筆型の触覚デバイス。なぞり面の凹凸形状や素材感（テクスチャ知覚）を変調させる。</p>
-          <p><a href="https://www.conference.vrsj.org/ac2026/program/doc/3B2-08.pdf">VR学会'26</a> <p><a href="https://haptics-youth.blogspot.com/2026/07/demo2026.html">触覚若手の会'26</a>
+          <p><a href="https://www.conference.vrsj.org/ac2026/program/doc/3B2-08.pdf">VR学会'26</a>　<a href="https://haptics-youth.blogspot.com/2026/07/demo2026.html">触覚若手の会'26</a></p>
         </article>
 
         <article class="work">
@@ -250,35 +250,6 @@
     </div>
   </section>
 
-  <!-- ===================== ★業績 ===================== -->
-  <section class="block" id="publications">
-    <div class="wrap">
-      <h2>Publications</h2>
-      <p class="lead">論文・発表（自分の名前は下線で表示）</p>
-
-      <h3 class="pub-group">国際会議・論文誌</h3>
-      <ol class="pubs" reversed>
-        <!-- ▼ 1件分。新しいものを上に追加 -->
-        <li>
-          <span class="me">Taro Yamada</span>, Hanako Suzuki, and Jiro Sato.
-          <span class="title">“Softness Modulation through Fingertip Vibration.”</span>
-          <span class="venue">CHI 2026 Extended Abstracts.</span>
-          <span class="plinks">[<a href="#">Web</a>] [<a href="#">PDF</a>] [<a href="#">Video</a>]</span>
-        </li>
-      </ol>
-
-      <h3 class="pub-group">国内発表</h3>
-      <ol class="pubs" reversed>
-        <li>
-          <span class="me">山田太郎</span>, 鈴木花子.
-          <span class="title">「〇〇を用いた触覚提示手法の検討」</span>
-          <span class="venue">第30回日本バーチャルリアリティ学会大会, 2025.</span>
-          <span class="plinks">[<a href="#">PDF</a>]</span>
-        </li>
-      </ol>
-    </div>
-  </section>
-
   <!-- ===================== ★略歴 ===================== -->
   <section class="block" id="cv">
     <div class="wrap">
@@ -290,6 +261,41 @@
         <li><time datetime="2019-04">2019.04</time><span>木更津高専専攻科 制御・情報システム工学専攻 入学</span></li>
         <li><time datetime="2024-03">2024.03</time><span>木更津高専 卒業 </span></li>
         <li><time datetime="2019-04">2019.04</time><span>木更津高専 電子制御工学科 入学</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== ★発表・展示・受賞 ===================== -->
+  <section class="block" id="publications">
+    <div class="wrap">
+      <h2>Publications</h2>
+      <p class="lead">発表・展示・受賞歴</p>
+
+      <h3 class="pub-group">発表</h3>
+      <!-- ▼ 1件分。新しいものを上に追加。自分の名前は <span class="me">〜</span> で下線になります -->
+      <ul class="dated">
+        <li><time datetime="2026">2026</time><span>
+          <span class="me">Hinata Mikami</span>, （共著者）.
+          <span class="pub-title">「（発表タイトル）」</span>
+          第31回日本バーチャルリアリティ学会大会, 2026.
+          [<a href="https://www.conference.vrsj.org/ac2026/program/doc/3B2-08.pdf">PDF</a>]
+        </span></li>
+        <li><time datetime="2026-07">2026.07</time><span>
+          触覚若手の会 2026 デモ発表「vi-Vinci」
+          [<a href="https://haptics-youth.blogspot.com/2026/07/demo2026.html">Web</a>]
+        </span></li>
+      </ul>
+
+      <h3 class="pub-group">展示</h3>
+      <ul class="dated">
+        <li><time datetime="2026">2026</time><span>東京大学制作展2026「AI: Artistic Integration」展示 [<a href="https://www.iiiexhibition.com/">Web</a>]</span></li>
+        <li><time datetime="2023">2023</time><span>国際美術大賞展 2023『硝子』（油彩）[<a href="https://nissenbijutu.jp/exhibition1/2023/2023_02.html">Web</a>]</span></li>
+        <li><time datetime="2023">2023</time><span>LIQUITEX THE CHALLENGE 2023『colorful』（アクリル）[<a href="https://lq-cha.jp/entries/view/6#l">Web</a>]</span></li>
+      </ul>
+
+      <h3 class="pub-group">受賞</h3>
+      <ul class="dated">
+        <li><time datetime="2025">2025.00</time><span>（賞の名前）（受賞作品・発表名）</span></li>
       </ul>
     </div>
   </section>
