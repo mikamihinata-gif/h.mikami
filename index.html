@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ★ タブに表示されるタイトルと、検索結果・SNSに出る説明文 -->
+<title>Taro Yamada</title>
+<meta name="description" content="ハプティクスとメディアアートの研究者、山田太郎のホームページ。">
+<meta property="og:title" content="山田 太郎 | Taro Yamada">
+<meta property="og:description" content="ハプティクスとメディアアートの研究者、山田太郎のホームページ。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== 色（ここを変えると全体の色が変わります） ===== */
+  :root {
+    --bg: #f5f6f4;
+    --surface: #ffffff;
+    --ink: #1d2733;
+    --muted: #5d6774;
+    --line: #dde1e4;
+    --accent: #3d5a8c;
+    --dot: #9aa6b4;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161b22;
+      --surface: #1d232c;
+      --ink: #e6e9ed;
+      --muted: #9aa4b0;
+      --line: #2e3640;
+      --accent: #9db5e0;
+      --dot: #4a5562;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Instrument Sans", "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ===== ヘッダー ===== */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 3.5rem; gap: 1rem; }
+  header.top .site-name { font-weight: 600; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  header.top nav { display: flex; gap: 1.25rem; overflow-x: auto; }
+  header.top nav a { color: var(--muted); text-decoration: none; font-size: .93rem; white-space: nowrap; }
+  header.top nav a:hover { color: var(--ink); }
+
+  /* ===== プロフィール（最初の画面） ===== */
+  .hero { position: relative; padding: 4.5rem 0 3.5rem; overflow: hidden; }
+  /* 触覚ピンアレイを思わせる点の模様 */
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(var(--dot) 1.3px, transparent 1.8px);
+    background-size: 15px 15px;
+    -webkit-mask-image: radial-gradient(ellipse 45% 70% at 82% 45%, #000 10%, transparent 75%);
+            mask-image: radial-gradient(ellipse 45% 70% at 82% 45%, #000 10%, transparent 75%);
+    opacity: .7; pointer-events: none;
+  }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1fr 200px; gap: 3rem; align-items: center; }
+  .hero h1 {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.2; letter-spacing: .04em; margin: 0;
+  }
+  .hero .roman { font-size: 1.15rem; color: var(--muted); margin: .4rem 0 1.4rem; letter-spacing: .02em; }
+  .hero .affil { margin: 0 0 1rem; }
+  .hero .bio { max-width: 38em; margin: 0 0 1.4rem; }
+  .hero .keywords { color: var(--muted); font-size: .93rem; margin: 0 0 1.4rem; }
+  .links { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; padding: 0; margin: 0; list-style: none; font-size: .95rem; }
+  .photo {
+    width: 200px; aspect-ratio: 1; border-radius: 50%; object-fit: cover;
+    background: var(--line); border: 4px solid var(--surface);
+    display: grid; place-items: center; color: var(--muted); font-size: .85rem;
+  }
+
+  /* ===== 共通セクション ===== */
+  section.block { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+  section.block h2 {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 1.5rem; font-weight: 700; margin: 0 0 .3rem;
+  }
+  section.block .lead { color: var(--muted); margin: 0 0 2rem; }
+
+  /* ===== News・略歴（日付つきの一覧） ===== */
+  .dated { list-style: none; margin: 0; padding: 0; }
+  .dated li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: .6rem 0; border-bottom: 1px dashed var(--line); }
+  .dated li:last-child { border-bottom: none; }
+  .dated time { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  /* ===== 研究・作品 ===== */
+  .works { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2.2rem 1.8rem; }
+  .work .thumb {
+    width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px;
+    background: var(--line); display: grid; place-items: center; color: var(--muted); font-size: .85rem;
+  }
+  .work .meta { margin: .8rem 0 .1rem; font-size: .85rem; color: var(--muted); }
+  .work .kind { color: var(--accent); font-weight: 600; margin-right: .6rem; }
+  .work h3 { font-size: 1.1rem; margin: 0 0 .3rem; line-height: 1.5; }
+  .work p { margin: 0 0 .5rem; font-size: .95rem; }
+
+  /* ===== 業績 ===== */
+  .pubs { margin: 0; padding-left: 1.4rem; }
+  .pubs li { margin-bottom: 1.1rem; padding-left: .3rem; }
+  .pubs .title { font-weight: 600; }
+  .pubs .venue { font-style: italic; }
+  .pubs .plinks { font-size: .9rem; margin-left: .3rem; white-space: nowrap; }
+  .pubs .me { text-decoration: underline; text-decoration-color: var(--dot); text-underline-offset: 3px; }
+  h3.pub-group { font-size: 1rem; color: var(--muted); font-weight: 600; margin: 2rem 0 .8rem; }
+  h3.pub-group:first-of-type { margin-top: 0; }
+
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; color: var(--muted); font-size: .9rem; }
+
+  @media (max-width: 680px) {
+    .hero { padding-top: 3rem; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .photo { width: 140px; order: -1; }
+    .dated li { grid-template-columns: 1fr; gap: 0; }
+    header.top nav { gap: .9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="site-name" href="#">Taro Yamada</a>
+    <nav aria-label="ページ内リンク">
+      <a href="#news">News</a>
+      <a href="#works">Works</a>
+      <a href="#publications">Publications</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== ★プロフィール ===================== -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>山田 太郎</h1>
+        <p class="roman">Taro Yamada</p>
+        <p class="affil">〇〇大学 〇〇研究科 〇〇研究室 博士課程</p>
+        <p class="bio">
+          触覚（ハプティクス）とメディアアートの交差点で、人が「触れる」体験をどう設計できるかを研究しています。
+          振動や温度による触覚提示デバイスの開発と、それを用いたインスタレーション作品の制作を行っています。
+        </p>
+        <p class="keywords">ハプティクス／触知覚／メディアアート／インタラクション</p>
+        <!-- ★ 不要なリンクは行ごと消してください -->
+        <ul class="links">
+          <li><a href="https://scholar.google.com/">Google Scholar</a></li>
+          <li><a href="https://researchmap.jp/">researchmap</a></li>
+          <li><a href="https://github.com/">GitHub</a></li>
+          <li><a href="https://x.com/">X</a></li>
+          <li><a href="cv.pdf">CV (PDF)</a></li>
+        </ul>
+      </div>
+      <!-- ★ 顔写真：images フォルダに photo.jpg を入れたら、下の div を
+           <img class="photo" src="images/photo.jpg" alt="山田太郎の写真"> に置き換え -->
+      <div class="photo" role="img" aria-label="写真の場所">photo</div>
+    </div>
+  </div>
+
+  <!-- ===================== ★News（新しいものを上に追加） ===================== -->
+  <section class="block" id="news">
+    <div class="wrap">
+      <h2>News</h2>
+      <p class="lead">発表・展示・受賞などのお知らせ</p>
+      <ul class="dated">
+        <li><time datetime="2026-10">2026.10</time><span>ホームページを公開しました。</span></li>
+        <li><time datetime="2026-09">2026.09</time><span>〇〇展にて作品「〇〇」を展示しました。<a href="#">展示ページ</a></span></li>
+        <li><time datetime="2026-05">2026.05</time><span>論文が CHI 2026 Late-Breaking Work に採択されました。</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== ★研究・作品 ===================== -->
+  <section class="block" id="works">
+    <div class="wrap">
+      <h2>Works</h2>
+      <p class="lead">研究プロジェクトと作品</p>
+      <div class="works">
+
+        <!-- ▼ 1件分ここから（コピーして増やせます） -->
+        <article class="work">
+          <!-- 画像を使うとき：<img class="thumb" src="images/work1.jpg" alt="作品の説明"> -->
+          <div class="thumb">image</div>
+          <p class="meta"><span class="kind">研究</span>2025–2026</p>
+          <h3>指先への振動で素材の「やわらかさ」を変える装置</h3>
+          <p>指先の振動刺激によって、触れている物体のやわらかさの感じ方を操作する手法を提案しました。</p>
+          <p><a href="#">論文</a>　<a href="#">動画</a></p>
+        </article>
+        <!-- ▲ 1件分ここまで -->
+
+        <article class="work">
+          <div class="thumb">image</div>
+          <p class="meta"><span class="kind">作品</span>2026</p>
+          <h3>「〇〇」— 触れる音のインスタレーション</h3>
+          <p>観客が壁面に触れると、振動として音が手に伝わる体験型の作品です。</p>
+          <p><a href="#">展示情報</a>　<a href="#">動画</a></p>
+        </article>
+
+        <article class="work">
+          <div class="thumb">image</div>
+          <p class="meta"><span class="kind">制作</span>2024</p>
+          <h3>多チャンネル振動アンプ基板</h3>
+          <p>実験と展示で使う、マイコンとD級アンプを組み合わせた自作基板です。</p>
+          <p><a href="#">GitHub</a></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ★業績 ===================== -->
+  <section class="block" id="publications">
+    <div class="wrap">
+      <h2>Publications</h2>
+      <p class="lead">論文・発表（自分の名前は下線で表示）</p>
+
+      <h3 class="pub-group">国際会議・論文誌</h3>
+      <ol class="pubs" reversed>
+        <!-- ▼ 1件分。新しいものを上に追加 -->
+        <li>
+          <span class="me">Taro Yamada</span>, Hanako Suzuki, and Jiro Sato.
+          <span class="title">“Softness Modulation through Fingertip Vibration.”</span>
+          <span class="venue">CHI 2026 Extended Abstracts.</span>
+          <span class="plinks">[<a href="#">Web</a>] [<a href="#">PDF</a>] [<a href="#">Video</a>]</span>
+        </li>
+      </ol>
+
+      <h3 class="pub-group">国内発表</h3>
+      <ol class="pubs" reversed>
+        <li>
+          <span class="me">山田太郎</span>, 鈴木花子.
+          <span class="title">「〇〇を用いた触覚提示手法の検討」</span>
+          <span class="venue">第30回日本バーチャルリアリティ学会大会, 2025.</span>
+          <span class="plinks">[<a href="#">PDF</a>]</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== ★略歴 ===================== -->
+  <section class="block" id="cv">
+    <div class="wrap">
+      <h2>CV</h2>
+      <p class="lead">略歴・受賞・展示</p>
+      <ul class="dated">
+        <li><time datetime="2026-04">2026.04</time><span>〇〇大学大学院 〇〇研究科 博士課程 進学</span></li>
+        <li><time datetime="2025-08">2025.08</time><span>〇〇賞 受賞</span></li>
+        <li><time datetime="2024-04">2024.04</time><span>〇〇大学大学院 〇〇研究科 修士課程 入学</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== ★連絡先 ===================== -->
+<footer id="contact">
+  <div class="wrap">
+    <p>Email: yamada [at] example.ac.jp</p>
+    <p>© 2026 Taro Yamada</p>
+  </div>
+</footer>
+
+</body>
+</html>
